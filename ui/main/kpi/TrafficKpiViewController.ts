@@ -154,7 +154,7 @@ export abstract class TrafficKpiViewController extends HtmlViewController {
 
   viewDidMount(view: HtmlView): void {
     // force resize after flexbox layout
-    requestAnimationFrame(function () { view.cascadeResize(); });
+    // requestAnimationFrame(function () { view.cascadeResize(); });
 
     this._updateTimer = setInterval(this.updateKpi.bind(this), 1000) as any;
     this.updateKpi();

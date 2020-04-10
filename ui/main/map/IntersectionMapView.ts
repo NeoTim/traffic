@@ -25,25 +25,27 @@ export class IntersectionMapView extends MapGraphicView {
     return this._viewController;
   }
 
-  @MemberAnimator(Color, "inherit")
+  @MemberAnimator(Color, {inherit: true})
   intersectionMarkerColor: MemberAnimator<this, Color, AnyColor>;
 
-  @MemberAnimator(Color, "inherit")
+  @MemberAnimator(Color, {inherit: true})
   pedestrianMarkerColor: MemberAnimator<this, Color, AnyColor>;
 
-  @MemberAnimator(Color, "inherit")
+  @MemberAnimator(Color, {inherit: true})
   redLightColor: MemberAnimator<this, Color, AnyColor>;
 
-  @MemberAnimator(Color, "inherit")
+  @MemberAnimator(Color, {inherit: true})
   yellowLightColor: MemberAnimator<this, Color, AnyColor>;
 
-  @MemberAnimator(Color, "inherit")
+  @MemberAnimator(Color, {inherit: true})
   greenLightColor: MemberAnimator<this, Color, AnyColor>;
 
+  /*
   protected onCull(): void {
     super.onCull();
     if (this._hitBounds === null) {
       this.setCulled(true);
     }
   }
+  */
 }

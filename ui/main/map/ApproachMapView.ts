@@ -30,12 +30,12 @@ export class ApproachMapView extends MapPolygonView {
     return this._viewController;
   }
 
-  @MemberAnimator(Color, "inherit")
+  @MemberAnimator(Color, {inherit: true})
   redLightColor: MemberAnimator<this, Color, AnyColor>;
 
-  @MemberAnimator(Color, "inherit")
+  @MemberAnimator(Color, {inherit: true})
   yellowLightColor: MemberAnimator<this, Color, AnyColor>;
 
-  @MemberAnimator(Color, "inherit")
+  @MemberAnimator(Color, {inherit: true})
   greenLightColor: MemberAnimator<this, Color, AnyColor>;
 }

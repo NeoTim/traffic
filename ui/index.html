@@ -12,21 +12,19 @@
   <body style="width: 100%; height: 100%; margin: 0; overflow: auto; background-color: #040e19">
     <div id="app" style="width: 100%; height: 100%;">
     </div>
-    <script src="https://cdn.swim.ai/js/3.9.0/swim-core.js"></script>
-    <script src="https://cdn.swim.ai/js/3.9.0/swim-ui.js"></script>
-    <script src="https://cdn.swim.ai/js/3.9.0/swim-ux.js"></script>
+    <script src="https://cdn.swimos.org/js/3.10.2/swim-system.js"></script>
     <script src="dist/main/swim-traffic.js"></script>
     <script>
 
 mapboxgl.accessToken = "pk.eyJ1Ijoic3dpbWl0IiwiYSI6ImNqY2c3NXZkYzFoa2QycXQ1eXl1Mnd6M3EifQ.qpRE7xC08AyZfxJ56LoN7w";
 
-var app = new swim.HtmlAppView(document.getElementById("app"));
+const app = new swim.HtmlAppView(document.getElementById("app"));
 
-var baseUri = swim.Uri.parse(document.location.href);
-var hostUri = baseUri.hostName() ? baseUri.base().scheme("warp") : swim.Uri.parse("warp://localhost:9001");
-var trafficNodeRef = swim.nodeRef(hostUri, "/city/PaloAlto_CA_US");
+const baseUri = swim.Uri.parse(document.location.href);
+const hostUri = baseUri.hostName() ? baseUri.base().scheme("warp") : swim.Uri.parse("warp://localhost:9001");
+const trafficNodeRef = swim.nodeRef(hostUri, "/city/PaloAlto_CA_US");
 //var trafficNodeRef = swim.nodeRef("warps://traffic.swim.services", "/city/PaloAlto_CA_US");
-var trafficViewController = new swim.traffic.TrafficViewController(trafficNodeRef);
+const trafficViewController = new swim.traffic.TrafficViewController(trafficNodeRef);
 app.setViewController(trafficViewController);
 
     </script>
