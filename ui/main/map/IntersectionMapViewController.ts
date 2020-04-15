@@ -18,7 +18,7 @@ import {Length} from "@swim/length";
 import {Color} from "@swim/color";
 import {Transition} from "@swim/transition";
 import {PopoverView} from "@swim/view";
-import {LngLat, MapGraphicViewController, MapCircleView} from "@swim/map";
+import {LngLat, MapViewContext, MapGraphicViewController, MapCircleView} from "@swim/map";
 import {IntersectionInfo, SignalPhase} from "./IntersectionModel";
 import {IntersectionMapView} from "./IntersectionMapView";
 import {IntersectionPopoverViewController} from "./IntersectionPopoverViewController";
@@ -88,6 +88,7 @@ export class IntersectionMapViewController extends MapGraphicViewController<Inte
         this.didUpdateApproach(item.toAny() as unknown as ApproachInfo);
       }
     }, this);
+    
   }
 
   protected didUpdateApproach(approachInfo: ApproachInfo): void {
@@ -198,21 +199,27 @@ export class IntersectionMapViewController extends MapGraphicViewController<Inte
     }
   }
 
+  viewDidProject(viewContext: MapViewContext, view: IntersectionMapView): void {
+    console.log("intersection " + this._info.id + " viewDidProject");
+    view.setCulled(this.zoom < APPROACH_ZOOM);
+  }
+
   viewDidSetCulled(culled: boolean, view: IntersectionMapView): void {
-    //console.log("intersection " + this._info.id + " viewDidSetCulled: " + culled);
-    if (culled || this.zoom < APPROACH_ZOOM) {
+    console.log("intersection " + this._info.id + " viewDidSetCulled: " + culled);
+    if (culled) {
       this.unlinkPhases();
-    } else if (view._hitBounds !== null) {
+    } else {
       this.linkPhases();
     }
     if (culled) {
       this.unlinkDetectors();
       this.unlinkPedCall();
-    } else if (view._hitBounds !== null) {
+    } else {
       this.linkDetectors();
       this.linkPedCall();
     }
   }
+
 
   protected linkSchematic(): void {
     if (!this._schematicLink) {
